@@ -1,3 +1,3 @@
-# spec-reactions
+# Interop 2024 Reactions
 
-Script to count the number of reactions to issues in spec repos.
+Tool show the number of reactions to Interop 2024 proposals.

@@ -1,11 +1,11 @@
 {
-  "name": "spec-reactions",
-  "description": "Counting GitHub reactions for web specifications",
+  "name": "interop-reactions",
+  "description": "Counting GitHub reactions for Interop",
   "version": "0.0.1",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://github.com/foolip/spec-reactions.git"
+    "url": "https://github.com/foolip/interop-reactions.git"
   },
   "type": "module",
   "scripts": {

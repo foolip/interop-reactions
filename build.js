@@ -82,7 +82,6 @@ async function main() {
       if (!label) {
         continue;
       }
-      console.log(label);
       const info = {
         total_count: issue.reactions.total_count,
         url: issue.html_url,

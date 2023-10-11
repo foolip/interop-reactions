@@ -14,7 +14,7 @@
   "dependencies": {
     "@octokit/plugin-throttling": "5.1.1",
     "@octokit/rest": "20.0.2",
-    "handlebars": "4.7.7",
+    "handlebars": "4.7.8",
     "list.js": "2.3.1",
     "open-props": "1.5.8",
     "vite": "4.4.11",

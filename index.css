@@ -6,11 +6,11 @@ header, main, footer {
 }
 
 header, footer {
-  background: var(--yellow-5);
+  background: var(--green-11);
 }
 
 header *, footer {
-  color: var(--gray-9) !important;
+  color: var(--gray-1) !important;
 }
 
 header a {

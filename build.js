@@ -1,13 +1,6 @@
 import fs from 'node:fs/promises';
-import specs from 'browser-specs' assert { type: "json" };
 import {Octokit} from '@octokit/rest';
 import {throttling} from '@octokit/plugin-throttling';
-
-// Minimum number of reactions to consider.
-const MIN_REACTION_COUNT = 10;
-
-// What to consider a recent reaction.
-const RECENT_REACTION_DAYS = 90;
 
 async function* iterateIssues(octokit, owner, repo) {
   for await (const response of octokit.paginate.iterator(
@@ -41,8 +34,6 @@ async function* iterateReactions(octokit, owner, repo, issue_number) {
 }
 
 async function main() {
-  const recentSince = Date.now() - (RECENT_REACTION_DAYS * 24 * 3600 * 1000);
-
   const ThrottlingOctokit = Octokit.plugin(throttling);
 
   const octokit = new ThrottlingOctokit({
@@ -63,13 +54,7 @@ async function main() {
     },
   });
 
-  const repos = new Set();
-  for (const spec of specs) {
-    const repo = spec.nightly.repository;
-    if (repo) {
-      repos.add(repo);
-    }
-  }
+  const repos = new Set(['https://github.com/web-platform-tests/interop']);
 
   // Collect all issues into an array. This will be used to generate HTML/JSON.
   const issues = [];
@@ -86,25 +71,27 @@ async function main() {
 
     const [owner, repo] = parts;
     for await (const issue of iterateIssues(octokit, owner, repo)) {
-      const totalCount = issue.reactions.total_count;
-      if (totalCount >= MIN_REACTION_COUNT) {
-        let recentCount = 0;
-        for await (const reaction of iterateReactions(octokit, owner, repo, issue.number)) {
-          const createdAt = Date.parse(reaction.created_at);
-          if (createdAt > recentSince) {
-            recentCount++;
-          }
+      const label = issue.labels.find((label) => {
+        switch (label.name) {
+        case 'focus-area-proposal':
+        case 'investigation-effort-proposal':
+          return label;
         }
-        const info = {
-          total_count: totalCount,
-          recent_count: recentCount,
-          url: issue.html_url,
-          title: issue.title,
-        };
-        // Log the issue URL to make it easier to see if the script is stuck.
-        console.log(info.url);
-        issues.push(info);
+        return undefined;
+      });
+      if (!label) {
+        continue;
       }
+      console.log(label);
+      const info = {
+        total_count: issue.reactions.total_count,
+        url: issue.html_url,
+        title: issue.title,
+        label: label.name,
+      };
+      // Log the issue URL to make it easier to see if the script is stuck.
+      console.log(info.url);
+      issues.push(info);
     }
   }
 

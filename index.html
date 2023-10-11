@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>🚀 SPEC REACTIONS</title>
+<title>🚀 Interop 2024 Reactions</title>
 <link rel="stylesheet" href="/index.css">
 <script src="/index.js" type="module"></script>
 <header>
-<h1>SPEC REACTIONS</h1>
-<p>This is a list of spec issues with 10+ reactions in repositories from <a href="https://github.com/w3c/browser-specs">browser-specs</a>. Recent means reactions in the past 90 days. Feedback welcome on <a href="https://github.com/foolip/spec-reactions">GitHub</a>!</p>
+<h1>Interop 2024 Reactions</h1>
+<p>This is a list of <a href="https://github.com/orgs/web-platform-tests/projects/3/views/1">Interop 2024 proposals</a> sorted by number of reactions.</p>
 </header>
 <main>
 <div id="reactions">
   <table>
     <thead>
       <tr>
-        <th title="Total number of reactions"><button class="sort" data-sort="total">Total</button></th>
-        <th title="Reactions in past 90 days"><button class="sort" data-sort="recent">Recent</button></th>
+        <th title="Total number of reactions"><button class="sort" data-sort="total">Reactions</button></th>
         <th><input class="search" placeholder="Filter issues by typing here"></th>
       </tr>
     </thead>
@@ -22,8 +21,7 @@
       {{#each issues}}
         <tr>
           <td class="total">{{total_count}}</td>
-          <td class="recent">{{recent_count}}</td>
-          <td class="title"><a href="{{url}}">{{title}}</a> <span>({{pretty url}})</span></td>
+          <td class="title"><a href="{{url}}">{{title}}</a></td>
         </tr>
       {{/each}}
     </tbody>

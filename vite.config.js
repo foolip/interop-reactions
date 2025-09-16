@@ -1,6 +1,6 @@
 import handlebars from 'vite-plugin-handlebars';
 
-import issues from './issues.json' assert { type: 'json' };
+import issues from './issues.json' with { type: 'json' };
 
 export default {
   base: './',

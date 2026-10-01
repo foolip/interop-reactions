@@ -1,3 +1,3 @@
-# Interop 2026 Reactions
+# Interop 2027 Reactions
 
-Tool show the number of reactions to [Interop 2026 proposals](https://github.com/orgs/web-platform-tests/projects/8).
+Tool show the number of reactions to [Interop 2027 proposals](https://github.com/orgs/web-platform-tests/projects/9).
